@@ -18,7 +18,9 @@
   "scripts": {
     "start-client": "node client.js",
     "start-auth-server": "node authorizationServer.js",
-    "start": "npm-run-all --parallel start-client start-auth-server"
+	"start-protected-resource-server": "node protectedResource.js",
+    "start": "npm-run-all --parallel start-client start-auth-server start-protected-resource-server"
+
   },
   "keywords": [],
   "author": "",
