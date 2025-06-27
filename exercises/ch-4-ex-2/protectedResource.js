@@ -63,7 +63,15 @@ app.get('/words', getAccessToken, requireAccessToken, function(req, res) {
 	/*
 	 * Make this function require the "read" scope
 	 */
+	
+	
+	if (__.contains(req.access_token.scope,'read')){
 	res.json({words: savedWords.join(' '), timestamp: Date.now()});
+	}else{
+		console.log("Access denied for read scope");
+		res.set('WWW-Authenticate', 'Bearer realm=localhost:9002 error="insufficient_scope", scope="read"');
+		res.status(403);
+	}
 });
 
 app.post('/words', getAccessToken, requireAccessToken, function(req, res) {
